@@ -7,7 +7,7 @@ async function obtenerComponentes(req, res) {
         const componentes = await Componente.find();
         res.status(200).json(componentes);
     } catch (error) {
-        res.status(500).json({ error: "Error al obtener los componentes" });
+        res.status(204).json({ error: "Error al obtener los componentes" });
     }
 }
 
@@ -18,7 +18,7 @@ async function obtenerComponentePorId(req, res) {
         if (!componente) return res.status(404).json({ error: "Componente no encontrado" });
         res.status(200).json(componente);
     } catch (error) {
-        res.status(500).json({ error: "Error al obtener el componente" });
+        res.status(204).json({ error: "Error al obtener el componente" });
     }
 }
 
@@ -40,7 +40,7 @@ async function actualizarComponente(req, res) {
         if (!componente) return res.status(404).json({ error: "Componente no encontrado" });
         res.status(200).json(componente);
     } catch (error) {
-        res.status(500).json({ error: "Error al actualizar el componente" });
+        res.status(400).json({ error: "Error al actualizar el componente" });
     }
 }
 
@@ -59,7 +59,7 @@ async function eliminarComponente(req, res) {
         if (!componente) return res.status(404).json({ error: "Componente no encontrado" });
         res.status(200).json({ message: "Componente eliminado exitosamente" });
     } catch (error) {
-        res.status(500).json({ error: "Error al eliminar el componente" });
+        res.status(400).json({ error: "Error al eliminar el componente" });
     }
 }
 
@@ -70,7 +70,7 @@ async function obtenerProductosDeComponente(req, res) {
         const productos = await Producto.find({ "componentes._id": id });
         res.status(200).json(productos);
     } catch (error) {
-        res.status(500).json({ error: "Error al obtener los productos del componente" });
+        res.status(400).json({ error: "Error al obtener los productos del componente" });
     }
 }
 
@@ -88,7 +88,7 @@ async function desasociarComponenteDeProducto(req, res) {
 
         res.status(200).json({ message: "Componente desasociado del producto exitosamente", producto });
     } catch (error) {
-        res.status(500).json({ error: "Error al desasociar el componente del producto" });
+        res.status(400).json({ error: "Error al desasociar el componente del producto" });
     }
 }
 

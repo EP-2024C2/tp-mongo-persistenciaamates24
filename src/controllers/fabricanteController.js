@@ -7,7 +7,7 @@ async function obtenerFabricantes(req, res) {
         const fabricantes = await Fabricante.find();
         res.status(200).json(fabricantes);
     } catch (error) {
-        res.status(500).json({ error: "Error al obtener los fabricantes" });
+        res.status(204).json({ error: "Error al obtener los fabricantes" });
     }
 }
 
@@ -18,7 +18,7 @@ async function obtenerFabricantePorId(req, res) {
         if (!fabricante) return res.status(404).json({ error: "Fabricante no encontrado" });
         res.status(200).json(fabricante);
     } catch (error) {
-        res.status(500).json({ error: "Error al obtener el fabricante" });
+        res.status(204).json({ error: "Error al obtener el fabricante" });
     }
 }
 
@@ -40,7 +40,7 @@ async function actualizarFabricante(req, res) {
         if (!fabricante) return res.status(404).json({ error: "Fabricante no encontrado" });
         res.status(200).json(fabricante);
     } catch (error) {
-        res.status(500).json({ error: "Error al actualizar el fabricante" });
+        res.status(400).json({ error: "Error al actualizar el fabricante" });
     }
 }
 
@@ -59,7 +59,7 @@ async function eliminarFabricante(req, res) {
         if (!fabricante) return res.status(404).json({ error: "Fabricante no encontrado" });
         res.status(200).json({ message: "Fabricante eliminado exitosamente" });
     } catch (error) {
-        res.status(500).json({ error: "Error al eliminar el fabricante" });
+        res.status(400).json({ error: "Error al eliminar el fabricante" });
     }
 }
 
@@ -70,7 +70,7 @@ async function obtenerProductosDeFabricante(req, res) {
         const productos = await Producto.find({ fabricantes: id });
         res.status(200).json(productos);
     } catch (error) {
-        res.status(500).json({ error: "Error al obtener los productos del fabricante" });
+        res.status(400).json({ error: "Error al obtener los productos del fabricante" });
     }
 }
 
@@ -88,7 +88,7 @@ async function desasociarFabricanteDeProducto(req, res) {
 
         res.status(200).json({ message: "Fabricante desasociado del producto exitosamente", producto });
     } catch (error) {
-        res.status(500).json({ error: "Error al desasociar el fabricante del producto" });
+        res.status(400).json({ error: "Error al desasociar el fabricante del producto" });
     }
 }
 
